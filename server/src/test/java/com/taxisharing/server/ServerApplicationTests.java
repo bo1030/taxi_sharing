@@ -1,13 +1,13 @@
-package com.taxisharing.taxisharing;
+package com.taxisharing.server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TaxisharingApplicationTests {
+class ServerApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
