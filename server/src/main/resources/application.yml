@@ -3,7 +3,7 @@ spring:
     username: root
     password: taxisharing1234
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://13.209.32.171:3306/
+    url: jdbc:mysql://13.209.32.171:3306/taxi_db
 
 jwt:
   secreteKey: ABCDEFG
