@@ -2,6 +2,7 @@ package com.taxisharing.server.auth.service;
 
 import com.taxisharing.server.auth.domain.LoginInfo;
 import com.taxisharing.server.auth.util.JWTProvider;
+import com.taxisharing.server.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,4 +15,10 @@ public class AuthenticationService {
     {
         return jwtProvider.createToken(loginInfo.getId(),loginInfo.getNickname());
     }
+
+    public String createToken(User user)
+    {
+        return jwtProvider.createToken(user.getId(),user.getNickname());
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.taxisharing.server.member.domain;
+package com.taxisharing.server.user.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class User {
 
     private static final String DEFAULT_PROFILE = "/default-profile";
 
@@ -34,7 +34,7 @@ public class Member {
 
     private Integer manner;
 
-    public Member(String nickname, String username, String hash, String email, String profileImage, int manner)
+    public User(String nickname, String username, String hash, String email, String profileImage, int manner)
     {
         this.email = email;
         this.hash = hash;
@@ -44,12 +44,12 @@ public class Member {
         this.manner = manner;
     }
 
-    public Member(String nickname, String username, String hash, String email, String profileImage)
+    public User(String nickname, String username, String hash, String email, String profileImage)
     {
         this(nickname, username, hash, email, profileImage, 0);
     }
 
-    public Member(String nickname, String username, String hash, String email)
+    public User(String nickname, String username, String hash, String email)
     {
         this(nickname, username, hash,  email, null);
     }

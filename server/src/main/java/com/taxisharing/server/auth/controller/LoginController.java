@@ -2,7 +2,7 @@ package com.taxisharing.server.auth.controller;
 
 import com.taxisharing.server.auth.dto.LoginRequest;
 import com.taxisharing.server.auth.dto.TokenResponse;
-import com.taxisharing.server.auth.exception.InvalidIdOrPassword;
+import com.taxisharing.server.auth.exception.InvalidIdOrPasswordException;
 import com.taxisharing.server.auth.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ public class LoginController {
     {
         if(result.hasErrors())
         {
-            throw new InvalidIdOrPassword();
+            throw new InvalidIdOrPasswordException();
         }
         return ResponseEntity.ok(loginService.login(loginRequest));
     }
