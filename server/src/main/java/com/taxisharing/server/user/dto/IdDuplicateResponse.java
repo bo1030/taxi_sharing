@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class IdDuplicateResponse {
-    private boolean result;
+    private String result;
 
-    public IdDuplicateResponse(boolean result)
+    public IdDuplicateResponse(String result)
     {
         this.result = result;
     }

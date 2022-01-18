@@ -26,11 +26,11 @@ public class UserController {
     @GetMapping()
     ResponseEntity<IdDuplicateResponse> idDuplicateCheck(@Valid @RequestParam("username") IdDuplicateRequest idDuplicateRequest)
     {
-        if(!userRepository.existsByUsername(idDuplicateRequest.getUsername()))
+        if(userRepository.existsByUsername(idDuplicateRequest.getUsername()))
         {
             throw new DuplicatedUsernameException();
         }
-        return ResponseEntity.ok(new IdDuplicateResponse(true));
+        return ResponseEntity.ok(new IdDuplicateResponse("이 ID는 사용가능합니다."));
     }
 
     @PostMapping()
