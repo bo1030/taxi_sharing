@@ -2,9 +2,11 @@ package com.taxisharing.server.auth.util;
 
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
 
+@Component
 public class PasswordEncoder {
 
     public String encode(String rawPassword)
