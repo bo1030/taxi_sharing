@@ -51,6 +51,6 @@ public class User {
 
     public User(String nickname, String username, String hash, String email)
     {
-        this(nickname, username, hash,  email, null);
+        this(nickname, username, hash,  email, DEFAULT_PROFILE);
     }
 }
