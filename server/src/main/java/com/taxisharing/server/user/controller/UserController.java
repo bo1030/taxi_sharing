@@ -1,5 +1,6 @@
 package com.taxisharing.server.user.controller;
 
+import com.taxisharing.server.user.dto.IdDuplicateRequest;
 import com.taxisharing.server.user.dto.IdDuplicateResponse;
 import com.taxisharing.server.user.dto.SignUpRequest;
 import com.taxisharing.server.user.dto.SignUpResponse;
@@ -23,9 +24,9 @@ public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping()
-    ResponseEntity<IdDuplicateResponse> idDuplicateCheck(@RequestParam("username") String username)
+    ResponseEntity<IdDuplicateResponse> idDuplicateCheck(@Valid @RequestParam("username") IdDuplicateRequest idDuplicateRequest)
     {
-        if(!userRepository.existsByUsername(username))
+        if(!userRepository.existsByUsername(idDuplicateRequest.getUsername()))
         {
             throw new DuplicatedUsernameException();
         }
