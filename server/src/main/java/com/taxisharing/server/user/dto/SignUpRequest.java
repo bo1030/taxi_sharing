@@ -18,14 +18,16 @@ public class SignUpRequest {
     @NotBlank
     private String email;
     @NotBlank
+    @Length(max = 45)
+    @Pattern(regexp = "^[a-zA-Z0-9]+$")
     private String username;
     @NotBlank
-    @Length(min = 2, max = 20)
+    @Length(min = 2, max = 16)
     @Pattern(regexp = "^[가-힣a-zA-Z0-9]+$")
     private String nickname;
-    @Length(min = 3, max = 20)
     @NotBlank
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,10}")
+    @Length(min = 8, max = 13)
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]$")
     private String password;
 
     public SignUpRequest(String email, String username, String nickname, String password) {
