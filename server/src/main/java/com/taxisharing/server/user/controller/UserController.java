@@ -24,9 +24,9 @@ public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping()
-    ResponseEntity<IdDuplicateResponse> idDuplicateCheck(@Valid @RequestParam("username") IdDuplicateRequest idDuplicateRequest)
+    ResponseEntity<IdDuplicateResponse> idDuplicateCheck(@Valid @RequestParam("username") IdDuplicateRequest idDuplicateRequest, BindingResult result)
     {
-        if(userRepository.existsByUsername(idDuplicateRequest.getUsername()))
+        if(result.hasErrors() || userRepository.existsByUsername(idDuplicateRequest.getUsername()))
         {
             throw new DuplicatedUsernameException();
         }
