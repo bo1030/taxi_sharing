@@ -1,11 +1,14 @@
 package  com.taxisharing.server.chat.domain;
+
 import com.taxisharing.server.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import java.util.Date;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "chat_room")
@@ -45,6 +48,9 @@ public class ChatRoom {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User host;
+
+    @OneToMany(mappedBy = "chat_room")
+    private final List<ChatRoomParticipant> participants = new ArrayList<>();
 
     public ChatRoom(String hostName, Date generateTime, Date departureTime, String departureAddress, float departureLatitude, float departureLongitude, String destinationAddress, float destinationLatitude, float destinationLongitude, Integer maximumNumber, Integer currentNumber, User host){
         this.hostName = hostName;
