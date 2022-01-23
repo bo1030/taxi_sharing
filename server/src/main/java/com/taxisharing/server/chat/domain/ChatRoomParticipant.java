@@ -28,15 +28,11 @@ public class ChatRoomParticipant {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "chatting_room_id")
-    private ChatRoom room;
 
-    public ChatRoomParticipant(String name, Integer status, Date readTime, User user, ChatRoom room){
+    public ChatRoomParticipant(String name, Integer status, Date readTime, User user){
         this.name = name;
         this.status = status;
         this.readTime = readTime;
         this.user = user;
-        this. room = room;
     }
 }
