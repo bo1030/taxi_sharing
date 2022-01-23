@@ -30,42 +30,42 @@ public class ChatController {
     }
 
     @PostMapping("/{crid}")
-    ResponseEntity<EnterChatRoomResponse> enterChatRoom() {
+    ResponseEntity<EnterChatRoomResponse> enterChatRoom(@PathVariable("crid")int crid) {
         return null;
     }
 
-    @PutMapping("/{cird}")
-    ResponseEntity<String> modifyChatInfo(){
+    @PutMapping("/{crid}")
+    ResponseEntity<String> modifyChatInfo(@PathVariable("crid")int crid){
         return null;
     }
 
     @DeleteMapping("/{crid}")
-    ResponseEntity<String> deleteChatRoom(){
+    ResponseEntity<String> deleteChatRoom(@PathVariable("crid")int crid){
         return null;
     }
 
     @GetMapping("/{crid}/chatting")
-    ResponseEntity<String> chattingList(){
+    ResponseEntity<String> chattingList(@PathVariable("crid")int crid){
         return null;
     }
 
     @PostMapping("/{crid}/chatting")
-    ResponseEntity<String> writeChatting(){
+    ResponseEntity<String> writeChatting(@PathVariable("crid")int crid){
         return null;
     }
 
     @DeleteMapping("/{crid}/chatting")
-    ResponseEntity<String> deleteChatting(){
+    ResponseEntity<String> deleteChatting(@PathVariable("crid")int crid){
         return null;
     }
 
     @GetMapping("/{crid}/chatting/count")
-    ResponseEntity<String> getChatCount(){
+    ResponseEntity<String> getChatCount(@PathVariable("crid")int crid){
         return null;
     }
 
     @PutMapping("/{crid}/chatting/count")
-    ResponseEntity<String> modifyChatCount(){
+    ResponseEntity<String> modifyChatCount(@PathVariable("crid")int crid){
         return null;
     }
 }
