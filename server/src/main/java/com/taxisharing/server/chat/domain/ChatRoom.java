@@ -52,6 +52,9 @@ public class ChatRoom {
     @OneToMany(mappedBy = "chat_room")
     private final List<ChatRoomParticipant> participants = new ArrayList<>();
 
+    @OneToMany(mappedBy = "chat_room")
+    private final List<ChatRoomMessage> messages = new ArrayList<>();
+
     public ChatRoom(String hostName, Date generateTime, Date departureTime, String departureAddress, float departureLatitude, float departureLongitude, String destinationAddress, float destinationLatitude, float destinationLongitude, Integer maximumNumber, Integer currentNumber, User host){
         this.hostName = hostName;
         this.generateTime = generateTime;
