@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="personal_payment")
+@IdClass(PersonalPaymentId.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PersonalPayment {
@@ -17,6 +18,7 @@ public class PersonalPayment {
     @ManyToOne(fetch= FetchType.LAZY) //필요할 때만
     @JoinColumn(name = "payment_id")
     private Payment payment;
+
 
     @Id
     @ManyToOne(fetch= FetchType.EAGER) //항상 들고오는
