@@ -9,13 +9,16 @@ import org.springframework.boot.web.embedded.undertow.UndertowServletWebServer;
 import javax.persistence.*;
 
 @Entity
+@Table(name="personal_payment")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PersonalPayment {
+    @Id
     @ManyToOne(fetch= FetchType.LAZY) //필요할 때만
     @JoinColumn(name = "payment_id")
     private Payment payment;
 
+    @Id
     @ManyToOne(fetch= FetchType.EAGER) //항상 들고오는
     @JoinColumn(name = "user_id")
     private User user;
