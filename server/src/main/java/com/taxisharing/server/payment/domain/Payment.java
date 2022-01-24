@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,6 +23,9 @@ public class Payment {
     private Date time;
 
     private Integer amount;
+
+    @OneToMany(mappedBy="payment")
+    private final List<PersonalPayment> personalPayments = new ArrayList<>();
 
     public Payment(Date time, Integer amount) {
         this.time = time;
