@@ -1,6 +1,7 @@
 package com.taxisharing.server.auth.service;
 
 import com.taxisharing.server.auth.domain.LoginInfo;
+import com.taxisharing.server.auth.dto.BasicUserInfo;
 import com.taxisharing.server.auth.util.JWTProvider;
 import com.taxisharing.server.user.domain.User;
 import lombok.RequiredArgsConstructor;
@@ -21,4 +22,13 @@ public class AuthenticationService {
         return jwtProvider.createToken(user.getId(),user.getNickname());
     }
 
+    public BasicUserInfo getBasicUserByToken(String token)
+    {
+        return jwtProvider.findIdAndEmailFromToken(token);
+    }
+
+    public void validateToken(String token)
+    {
+        jwtProvider.validateToken(token);
+    }
 }
