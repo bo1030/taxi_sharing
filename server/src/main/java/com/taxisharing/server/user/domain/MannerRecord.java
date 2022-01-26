@@ -18,16 +18,24 @@ public class MannerRecord {
 
     private int score;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User user;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="target_id")
     private User target;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="target_id")
+    private User user;
+
     public MannerRecord(int score)
     {
         this.score = score;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setTarget(User target) {
+        this.target = target;
     }
 }
