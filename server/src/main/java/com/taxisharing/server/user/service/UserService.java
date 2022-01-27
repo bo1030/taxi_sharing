@@ -37,15 +37,15 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public EvaluateMannerResponse evaluateManner(int userId, int targetId, EvaluateMannerRequest evaluateMannerRequest)
+    public EvaluateMannerResponse evaluateManner(int targetId, EvaluateMannerRequest evaluateMannerRequest)
     {
-        if(mannerRepository.existsByUser_IdAndTarget_Id(userId, targetId))
+        if(mannerRepository.existsByUser_IdAndTarget_Id(evaluateMannerRequest.getUid(), targetId))
         {
             throw new AlreadyEvaluateException();
         }
 
         User target = findUser(targetId);
-        User user = findUser(userId);
+        User user = findUser(evaluateMannerRequest.getUid());
         MannerRecord mannerRecord = new MannerRecord(evaluateMannerRequest.getScore());
 
         user.addTargetRecord(mannerRecord);
