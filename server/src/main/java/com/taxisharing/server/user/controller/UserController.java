@@ -1,9 +1,8 @@
 package com.taxisharing.server.user.controller;
 
-import com.taxisharing.server.user.dto.IdDuplicateRequest;
-import com.taxisharing.server.user.dto.IdDuplicateResponse;
-import com.taxisharing.server.user.dto.SignUpRequest;
-import com.taxisharing.server.user.dto.SignUpResponse;
+import com.taxisharing.server.auth.service.AuthenticationService;
+import com.taxisharing.server.auth.util.AuthorizationExtractor;
+import com.taxisharing.server.user.dto.*;
 import com.taxisharing.server.user.exception.DuplicatedUsernameException;
 import com.taxisharing.server.user.exception.SignUpRequestException;
 import com.taxisharing.server.user.repository.UserRepository;
@@ -21,12 +20,13 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
+    private final AuthorizationExtractor authorizationExtractor;
+    private final AuthenticationService authenticationService;
 
     @GetMapping()
     ResponseEntity<IdDuplicateResponse> idDuplicateCheck(@Valid @RequestParam("username") IdDuplicateRequest idDuplicateRequest, BindingResult result)
     {
-        if(result.hasErrors() || userRepository.existsByUsername(idDuplicateRequest.getUsername()))
+        if(result.hasErrors() || userService.isSignUp(idDuplicateRequest.getUsername()))
         {
             throw new DuplicatedUsernameException();
         }
@@ -41,5 +41,14 @@ public class UserController {
             throw new SignUpRequestException();
         }
         return ResponseEntity.ok(userService.signUp(signUpRequest));
+    }
+
+    @GetMapping("/{UID}")
+
+
+    @PostMapping("/{UID}")
+    ResponseEntity<EvaluateMannerResponse> evaluateManner(@PathVariable("UID") int targetId, @RequestBody EvaluateMannerRequest evaluateMannerRequest)
+    {
+        return ResponseEntity.ok(userService.evaluateManner(targetId,evaluateMannerRequest));
     }
 }

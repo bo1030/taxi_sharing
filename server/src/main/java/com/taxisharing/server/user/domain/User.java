@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -34,6 +36,12 @@ public class User {
 
     private Integer manner;
 
+    @OneToMany(mappedBy = "user")
+    private final List<MannerRecord> targetRecordList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "target")
+    private final List<MannerRecord> evaluatedRecordList = new ArrayList<>();
+
     public User(String nickname, String username, String hash, String email, String profileImage, int manner)
     {
         this.email = email;
@@ -52,5 +60,32 @@ public class User {
     public User(String nickname, String username, String hash, String email)
     {
         this(nickname, username, hash,  email, DEFAULT_PROFILE);
+    }
+
+    public void setManner(Integer manner) {
+        this.manner = manner;
+    }
+
+    public void addTargetRecord(MannerRecord mannerRecord)
+    {
+        this.targetRecordList.add(mannerRecord);
+        mannerRecord.setUser(this);
+    }
+
+    public void addEvaluateRecord(MannerRecord mannerRecord)
+    {
+        this.evaluatedRecordList.add(mannerRecord);
+        mannerRecord.setTarget(this);
+    }
+
+    public void setMeanScore()
+    {
+        int size = evaluatedRecordList.size();
+        int sum = 0;
+        for(MannerRecord mannerRecord:evaluatedRecordList)
+        {
+            sum += mannerRecord.getScore();
+        }
+        this.manner = sum/size;
     }
 }
