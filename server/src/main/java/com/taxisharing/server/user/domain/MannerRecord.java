@@ -23,7 +23,7 @@ public class MannerRecord {
     private User target;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="target_id")
+    @JoinColumn(name="user_id")
     private User user;
 
     public MannerRecord(int score)
