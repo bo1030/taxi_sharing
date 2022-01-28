@@ -23,7 +23,7 @@ public class UserController {
     private final AuthenticationService authenticationService;
 
     @GetMapping()
-    ResponseEntity<IdDuplicateResponse> idDuplicateCheck(@Valid @RequestParam("username") IdDuplicateRequest idDuplicateRequest, BindingResult result)
+    ResponseEntity<IdDuplicateResponse> idDuplicateCheck(@ModelAttribute IdDuplicateRequest idDuplicateRequest, BindingResult result)
     {
         if(result.hasErrors() || userService.isSignUp(idDuplicateRequest.getUsername()))
         {
