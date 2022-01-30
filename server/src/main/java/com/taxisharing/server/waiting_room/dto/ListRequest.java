@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.Optional;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Data
 public class ListRequest {
     private String departure_time;
@@ -33,7 +31,7 @@ public class ListRequest {
         this.departure_address = Optional.ofNullable(departure_address).orElseGet(()-> "None");
         this.departure_boundary = Optional.ofNullable(departure_boundary).orElseGet(()-> "None");
         this.destination_address = Optional.ofNullable(destination_address).orElseGet(()-> "None");
-        this.destination_boundary = Optional.ofNullable(departure_time).orElseGet(()-> "None");
+        this.destination_boundary = Optional.ofNullable(departure_boundary).orElseGet(()-> "None");
     }
 
 }
