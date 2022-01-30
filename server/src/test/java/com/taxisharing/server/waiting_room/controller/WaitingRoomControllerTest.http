@@ -1,0 +1,4 @@
+GET http://localhost:8080/waiting-room/?departure_time=1
+Accept: application/json
+
+###
