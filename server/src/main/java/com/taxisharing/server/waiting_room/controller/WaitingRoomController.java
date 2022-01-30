@@ -15,8 +15,8 @@ import javax.websocket.server.PathParam;
 public class WaitingRoomController {
 
     @GetMapping()
-    ResponseEntity<ListResponse> list(@RequestParam(required = false) ListRequest listRequest) {
-        String result = "";
+    ResponseEntity<ListResponse> list(ListRequest listRequest) {
+        String result = listRequest.toString();
         return ResponseEntity.ok(new ListResponse(result));
     }
 }
