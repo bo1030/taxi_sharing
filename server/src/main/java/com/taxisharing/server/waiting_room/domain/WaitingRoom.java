@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WaitingRoom {
@@ -22,7 +21,10 @@ public class WaitingRoom {
     @JoinColumn(name = "user_id")
     private User host;
 
-    @Column(length = 16, nullable = false)
+    @Column(name = "room_name", length = 45, nullable = false)
+    private String roomName;
+
+    @Column(name = "host_name", length = 16, nullable = false)
     private String hostName;
 
     @Column(nullable = false)

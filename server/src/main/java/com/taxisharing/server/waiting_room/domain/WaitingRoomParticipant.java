@@ -10,10 +10,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "waiting_room_participant")
+@Table(name = "waiting_room_participant") // todo: snake to camel hibernate setting
 @Getter
+//@IdClass()
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class WaitingRoomParticipant {
+public class WaitingRoomParticipant{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
