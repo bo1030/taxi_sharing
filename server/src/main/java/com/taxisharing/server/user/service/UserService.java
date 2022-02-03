@@ -1,12 +1,10 @@
 package com.taxisharing.server.user.service;
 
 import com.taxisharing.server.auth.service.AuthenticationService;
+import com.taxisharing.server.user.domain.Ban;
 import com.taxisharing.server.user.domain.MannerRecord;
 import com.taxisharing.server.user.domain.User;
-import com.taxisharing.server.user.dto.EvaluateMannerRequest;
-import com.taxisharing.server.user.dto.EvaluateMannerResponse;
-import com.taxisharing.server.user.dto.SignUpRequest;
-import com.taxisharing.server.user.dto.SignUpResponse;
+import com.taxisharing.server.user.dto.*;
 import com.taxisharing.server.user.exception.AlreadyEvaluateException;
 import com.taxisharing.server.user.exception.UserNotFoundException;
 import com.taxisharing.server.user.repository.MannerRepository;
@@ -63,5 +61,20 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
+    @Transactional(readOnly = true)
+    public UserBanResponse userBan(int uid, UserBanRequest userBanRequest)
+    {
+        User user = userRepository.findById(uid).orElseThrow(UserNotFoundException::new);
+        User target = userRepository.findById(userBanRequest.getTargetId()).orElseThrow(UserNotFoundException::new);
+        user.addBan(target);
+        userRepository.save(user);
+        return new UserBanResponse(user.getBanList());
+    }
 
+    @Transactional(readOnly = true)
+    public BanListResponse getBanList(int uid)
+    {
+        User user = userRepository.findById(uid).orElseThrow(UserNotFoundException::new);
+        return new BanListResponse(user.getBanList());
+    }
 }

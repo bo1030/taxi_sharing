@@ -5,9 +5,11 @@ import com.taxisharing.server.auth.util.AuthorizationExtractor;
 import com.taxisharing.server.user.dto.*;
 import com.taxisharing.server.user.exception.DuplicatedUsernameException;
 import com.taxisharing.server.user.exception.SignUpRequestException;
+import com.taxisharing.server.user.exception.UserBanException;
 import com.taxisharing.server.user.repository.UserRepository;
 import com.taxisharing.server.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.id.BulkInsertionCapableIdentifierGenerator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -42,12 +44,25 @@ public class UserController {
         return ResponseEntity.ok(userService.signUp(signUpRequest));
     }
 
-    @GetMapping("/{UID}")
-
-
     @PostMapping("/{UID}")
     ResponseEntity<EvaluateMannerResponse> evaluateManner(@PathVariable("UID") int targetId, @RequestBody EvaluateMannerRequest evaluateMannerRequest)
     {
         return ResponseEntity.ok(userService.evaluateManner(targetId,evaluateMannerRequest));
+    }
+
+    @GetMapping("/ban")
+    ResponseEntity<BanListResponse> banList(@RequestAttribute int uid)
+    {
+        return ResponseEntity.ok(userService.getBanList(uid));
+    }
+
+    @PostMapping("/ban")
+    ResponseEntity<UserBanResponse> userBan(@RequestAttribute int uid, @Valid @RequestBody UserBanRequest userBanRequest, BindingResult result)
+    {
+        if(result.hasErrors())
+        {
+            throw new UserBanException();
+        }
+        return ResponseEntity.ok(userService.userBan(uid ,userBanRequest));
     }
 }

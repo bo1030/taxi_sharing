@@ -7,4 +7,4 @@ spring:
 
 jwt:
   secreteKey: ABCDEFG
-  expire-length: 6000
+  expire-length: 600000
