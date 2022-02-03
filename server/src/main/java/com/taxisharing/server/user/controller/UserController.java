@@ -42,8 +42,6 @@ public class UserController {
         return ResponseEntity.ok(userService.signUp(signUpRequest));
     }
 
-    @GetMapping("/{UID}")
-
 
     @PostMapping("/{UID}")
     ResponseEntity<EvaluateMannerResponse> evaluateManner(@PathVariable("UID") int targetId, @RequestBody EvaluateMannerRequest evaluateMannerRequest)
