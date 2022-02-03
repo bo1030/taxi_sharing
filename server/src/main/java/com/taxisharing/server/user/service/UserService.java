@@ -21,7 +21,6 @@ public class UserService {
     public final MannerRepository mannerRepository;
     public final AuthenticationService authenticationService;
 
-    @Transactional(readOnly = true)
     public SignUpResponse signUp(SignUpRequest signUpRequest)
     {
         User user = signUpRequest.toUser();
@@ -29,12 +28,12 @@ public class UserService {
         return new SignUpResponse(authenticationService.createToken(savedUser));
     }
 
+    @Transactional(readOnly = true)
     public boolean isSignUp(String userName)
     {
         return userRepository.existsByUsername(userName);
     }
 
-    @Transactional(readOnly = true)
     public EvaluateMannerResponse evaluateManner(int targetId, EvaluateMannerRequest evaluateMannerRequest)
     {
         if(mannerRepository.existsByUser_IdAndTarget_Id(evaluateMannerRequest.getUid(), targetId))
