@@ -23,6 +23,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
         String token = AuthorizationExtractor.extract(request);
         authenticationService.validateToken(token);
+        request.setAttribute("uid",authenticationService.getBasicUserByToken(token).getId());
         return true;
     }
 }

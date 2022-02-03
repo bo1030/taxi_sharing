@@ -1,6 +1,5 @@
 package com.taxisharing.server.user.domain;
 
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,34 +7,23 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "manner_record")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MannerRecord {
+public class Ban {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private int score;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="target_id")
-    private User target;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    public MannerRecord(int score)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ban_id")
+    private User target;
+
+    public Ban(User target)
     {
-        this.score = score;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setTarget(User target) {
         this.target = target;
     }
 }

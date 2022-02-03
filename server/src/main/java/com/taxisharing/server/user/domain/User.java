@@ -42,6 +42,9 @@ public class User {
     @OneToMany(mappedBy = "target")
     private final List<MannerRecord> evaluatedRecordList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private final List<Ban> banList = new ArrayList<>();
+
     public User(String nickname, String username, String hash, String email, String profileImage, int manner)
     {
         this.email = email;
@@ -76,6 +79,11 @@ public class User {
     {
         this.evaluatedRecordList.add(mannerRecord);
         mannerRecord.setTarget(this);
+    }
+
+    public void addBan(User target)
+    {
+        this.banList.add(new Ban(target));
     }
 
     public void setMeanScore()
