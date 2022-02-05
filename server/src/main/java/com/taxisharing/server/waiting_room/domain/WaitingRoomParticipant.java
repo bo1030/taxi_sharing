@@ -11,17 +11,19 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "waiting_room_participant") // todo: snake to camel hibernate setting
 @Getter
-//@IdClass()
+@IdClass(WaitingRoomParticipantId.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WaitingRoomParticipant{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Id
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "room_id")
+    private WaitingRoom waitingRoom;
 
     private Integer status;
 
@@ -31,9 +33,9 @@ public class WaitingRoomParticipant{
     @Column(name = "read_time", nullable = false)
     private LocalDateTime readTime;
 
-    public WaitingRoomParticipant(Integer id, User user, Integer status, String name, LocalDateTime readTime) {
-        this.id = id;
-        this.user = user;
+
+
+    public WaitingRoomParticipant(Integer status, String name, LocalDateTime readTime) {
         this.status = status;
         this.name = name;
         this.readTime = readTime;

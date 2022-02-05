@@ -31,8 +31,7 @@ public class WaitingRoomMessage {
     @Column(name = "read_count", nullable = false)
     private Integer readCount;
 
-    public WaitingRoomMessage(Integer id, User user, String text, LocalDateTime time, Integer readCount) {
-        this.id = id;
+    public WaitingRoomMessage(User user, String text, LocalDateTime time, Integer readCount) {
         this.user = user;
         this.text = text;
         this.time = time;
