@@ -1,6 +1,7 @@
 package com.taxisharing.server.waiting_room.domain;
 
 import com.taxisharing.server.user.domain.User;
+import com.taxisharing.server.waiting_room.dto.WaitingRoomCreateRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -86,4 +87,10 @@ public class WaitingRoom {
         this.maximumNumber = maximumNumber;
         this.currentNumber = currentNumber;
     }
+
+    public WaitingRoom(User host, LocalDateTime generateTime, LocalDateTime departureTime, String departureAddress, Float departureLatitude, Float departureLongitude, String destinationAddress, Float destinationLatitude, Float destinationLongitude, Integer maximumNumber)
+    {
+        this(host, host.getNickname(), 0, generateTime, departureTime, departureAddress, departureLatitude, departureLongitude, destinationAddress, destinationLatitude, destinationLongitude, maximumNumber, 1);
+    }
+
 }
