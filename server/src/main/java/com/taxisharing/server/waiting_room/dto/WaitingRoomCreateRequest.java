@@ -13,10 +13,15 @@ public class WaitingRoomCreateRequest {
     private String hostName;
     private String departureTime;
 
+    private String departureAddress;
     @Pattern(regexp = "^(\\d+[.]\\d+[;]\\s){3}(\\d+[.]\\d+[;])")
     private String departureBoundary;
+
+    private String destinationAddress;
     @Pattern(regexp = "^(\\d+[.]\\d+[;]\\s){3}(\\d+[.]\\d+[;])")
     private String destinationBoundary;
+
+    private Integer maximumNumber;
 
     public WaitingRoomCreateRequest(String wname, String hostName, String departureTime, String departureBoundary, String destinationBoundary) {
         this.wname = wname;
