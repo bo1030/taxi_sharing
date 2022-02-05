@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/waiting-room")
+@RequiredArgsConstructor
 public class WaitingRoomController {
+    private final WaitingRoomService waitingRoomService;
 
     @GetMapping()
     ResponseEntity<WaitingRoomListResponse> waitingRoomList(@ModelAttribute WaitingRoomListRequest waitingRoomListRequest) {
