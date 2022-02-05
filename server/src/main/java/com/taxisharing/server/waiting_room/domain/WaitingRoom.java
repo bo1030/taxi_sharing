@@ -21,39 +21,48 @@ public class WaitingRoom {
     @JoinColumn(name = "user_id")
     private User host;
 
-    @Column(name = "room_name", length = 45, nullable = false)
+//    @Column(name = "room_name", length = 45, nullable = false)
+    @Column(length = 45, nullable = false)
     private String roomName;
 
-    @Column(name = "host_name", length = 16, nullable = false)
+//    @Column(name = "host_name", length = 16, nullable = false)
+    @Column(length = 16, nullable = false)
     private String hostName;
 
     @Column(nullable = false)
     private Integer status;
 
-    @Column(name = "generate_time", nullable = false)
+//    @Column(name = "generate_time", nullable = false)
+    @Column(nullable = false)
     private LocalDateTime generateTime;
-    @Column(name = "departure_time", nullable = false)
+//    @Column(name = "departure_time", nullable = false)
+    @Column(nullable = false)
     private LocalDateTime departureTime;
 
     @Column(length = 64, nullable = false)
     private String departureAddress;
 
-    @Column(name = "departure_latitude", nullable = false)
+//    @Column(name = "departure_latitude", nullable = false)
+    @Column(nullable = false)
     private Float departureLatitude;
-    @Column(name = "departure_longitude", nullable = false)
+    @Column(nullable = false)
     private Float departureLongitude;
 
     @Column(length = 64, nullable = false)
     private String destinationAddress;
 
-    @Column(name = "destination_latitude", nullable = false)
+//    @Column(name = "destination_latitude", nullable = false)
+    @Column(nullable = false)
     private Float destinationLatitude;
-    @Column(name = "destination_longitude", nullable = false)
+//    @Column(name = "destination_longitude", nullable = false)
+    @Column(nullable = false)
     private Float destinationLongitude;
 
-    @Column(name = "maximum_number", nullable = false)
+//    @Column(name = "maximum_number", nullable = false)
+    @Column(nullable = false)
     private Integer maximumNumber;
-    @Column(name = "current_number", nullable = false)
+//    @Column(name = "current_number", nullable = false)
+    @Column(nullable = false)
     private Integer currentNumber;
 
     public WaitingRoom(Integer id, User host, String hostName, Integer status, LocalDateTime generateTime, LocalDateTime departureTime, String departureAddress, Float departureLatitude, Float departureLongitude, String destinationAddress, Float destinationLatitude, Float destinationLongitude, Integer maximumNumber, Integer currentNumber) {
