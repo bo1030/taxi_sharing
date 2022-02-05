@@ -9,9 +9,7 @@ import java.util.Optional;
 @NoArgsConstructor
 public class WaitingRoomListRequest {
     private String departure_time;
-    private String departure_address;
     private String departure_boundary;
-    private String destination_address;
     private String destination_boundary;
 
     public WaitingRoomListRequest(String departure_time, String departure_boundary, String destination_boundary) {
