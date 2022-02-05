@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ListResponse {
+public class WaitingRoomListResponse {
     private String result;
 
-    public ListResponse(String result) {
+    public WaitingRoomListResponse(String result) {
         this.result = result;
     }
 }
