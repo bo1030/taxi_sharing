@@ -1,7 +1,6 @@
 package com.taxisharing.server.waiting_room.domain;
 
 import com.taxisharing.server.user.domain.User;
-import jdk.vm.ci.meta.Local;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
