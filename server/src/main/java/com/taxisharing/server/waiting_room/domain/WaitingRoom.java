@@ -7,9 +7,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
+@Table(name = "waiting_room")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WaitingRoom {
 
@@ -20,6 +23,9 @@ public class WaitingRoom {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User host;
+
+    @OneToMany(mappedBy = "waitingRoom")
+    private final List<WaitingRoomParticipant> waitingRoomParticipants = new ArrayList<>();
 
 //    @Column(name = "room_name", length = 45, nullable = false)
     @Column(length = 45, nullable = false)
@@ -65,8 +71,7 @@ public class WaitingRoom {
     @Column(nullable = false)
     private Integer currentNumber;
 
-    public WaitingRoom(Integer id, User host, String hostName, Integer status, LocalDateTime generateTime, LocalDateTime departureTime, String departureAddress, Float departureLatitude, Float departureLongitude, String destinationAddress, Float destinationLatitude, Float destinationLongitude, Integer maximumNumber, Integer currentNumber) {
-        this.id = id;
+    public WaitingRoom(User host, String hostName, Integer status, LocalDateTime generateTime, LocalDateTime departureTime, String departureAddress, Float departureLatitude, Float departureLongitude, String destinationAddress, Float destinationLatitude, Float destinationLongitude, Integer maximumNumber, Integer currentNumber) {
         this.host = host;
         this.hostName = hostName;
         this.status = status;
