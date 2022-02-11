@@ -1,5 +1,6 @@
 package com.taxisharing.server.user.controller;
 
+import com.taxisharing.server.auth.dto.BasicUserInfo;
 import com.taxisharing.server.auth.service.AuthenticationService;
 import com.taxisharing.server.user.dto.*;
 import com.taxisharing.server.user.exception.*;
@@ -40,24 +41,24 @@ public class UserController {
     }
 
     @PutMapping("/nickname")
-    ResponseEntity<Void> upddateNickname(@RequestAttribute int uid, @Valid @RequestBody NicknameRequest nicknameRequest, BindingResult result)
+    ResponseEntity<Void> upddateNickname(BasicUserInfo userInfo, @Valid @RequestBody NicknameRequest nicknameRequest, BindingResult result)
     {
         if(result.hasErrors())
         {
             throw new NicknameValidationException();
         }
-        userService.updateNickname(uid,nicknameRequest.getNickname());
+        userService.updateNickname(userInfo.getId(),nicknameRequest.getNickname());
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/password")
-    ResponseEntity<Void> updatePassword(int uid, @Valid @RequestBody PasswordRequest passwordRequest, BindingResult result)
+    ResponseEntity<Void> updatePassword(BasicUserInfo userInfo, @Valid @RequestBody PasswordRequest passwordRequest, BindingResult result)
     {
         if(result.hasErrors())
         {
             throw new PasswordValidationException();
         }
-        userService.updatePassword(uid, passwordRequest.toHash());
+        userService.updatePassword(userInfo.getId(), passwordRequest.toHash());
         return ResponseEntity.ok().build();
     }
 
@@ -68,18 +69,18 @@ public class UserController {
     }
 
     @GetMapping("/ban")
-    ResponseEntity<BanListResponse> banList(@RequestAttribute int uid)
+    ResponseEntity<BanListResponse> banList(BasicUserInfo userInfo)
     {
-        return ResponseEntity.ok(userService.getBanList(uid));
+        return ResponseEntity.ok(userService.getBanList(userInfo.getId()));
     }
 
     @PostMapping("/ban")
-    ResponseEntity<UserBanResponse> userBan(@RequestAttribute int uid, @Valid @RequestBody UserBanRequest userBanRequest, BindingResult result)
+    ResponseEntity<UserBanResponse> userBan(BasicUserInfo userInfo, @Valid @RequestBody UserBanRequest userBanRequest, BindingResult result)
     {
         if(result.hasErrors())
         {
             throw new UserBanException();
         }
-        return ResponseEntity.ok(userService.userBan(uid ,userBanRequest));
+        return ResponseEntity.ok(userService.userBan(userInfo.getId() ,userBanRequest));
     }
 }
