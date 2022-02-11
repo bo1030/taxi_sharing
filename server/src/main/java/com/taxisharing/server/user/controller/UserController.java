@@ -1,15 +1,10 @@
 package com.taxisharing.server.user.controller;
 
 import com.taxisharing.server.auth.service.AuthenticationService;
-import com.taxisharing.server.auth.util.AuthorizationExtractor;
 import com.taxisharing.server.user.dto.*;
-import com.taxisharing.server.user.exception.DuplicatedUsernameException;
-import com.taxisharing.server.user.exception.SignUpRequestException;
-import com.taxisharing.server.user.exception.UserBanException;
-import com.taxisharing.server.user.repository.UserRepository;
+import com.taxisharing.server.user.exception.*;
 import com.taxisharing.server.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.id.BulkInsertionCapableIdentifierGenerator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +37,28 @@ public class UserController {
             throw new SignUpRequestException();
         }
         return ResponseEntity.ok(userService.signUp(signUpRequest));
+    }
+
+    @PutMapping("/nickname")
+    ResponseEntity<Void> upddateNickname(@RequestAttribute int uid, @Valid @RequestBody NicknameRequest nicknameRequest, BindingResult result)
+    {
+        if(result.hasErrors())
+        {
+            throw new NicknameValidationException();
+        }
+        userService.updateNickname(uid,nicknameRequest.getNickname());
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/password")
+    ResponseEntity<Void> updatePassword(int uid, @Valid @RequestBody PasswordRequest passwordRequest, BindingResult result)
+    {
+        if(result.hasErrors())
+        {
+            throw new PasswordValidationException();
+        }
+        userService.updatePassword(uid, passwordRequest.toHash());
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{UID}")
