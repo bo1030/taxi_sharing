@@ -1,7 +1,6 @@
 package com.taxisharing.server.user.service;
 
 import com.taxisharing.server.auth.service.AuthenticationService;
-import com.taxisharing.server.user.domain.Ban;
 import com.taxisharing.server.user.domain.MannerRecord;
 import com.taxisharing.server.user.domain.User;
 import com.taxisharing.server.user.dto.*;
@@ -49,9 +48,19 @@ public class UserService {
         target.addEvaluateRecord(mannerRecord);
         mannerRepository.save(mannerRecord);
         target.setMeanScore();
-        User saveTarget = userRepository.save(target);
+        return new EvaluateMannerResponse(target.getManner());
+    }
 
-        return new EvaluateMannerResponse(saveTarget.getManner());
+    public void updateNickname(int uid, String nickname)
+    {
+        User user = this.findUser(uid);
+        user.updateNickname(nickname);
+    }
+
+    public void updatePassword(int uid, String newHash)
+    {
+        User user = this.findUser(uid);
+        user.updateHash(newHash);
     }
 
     @Transactional(readOnly = true)
@@ -60,13 +69,11 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
-    @Transactional(readOnly = true)
     public UserBanResponse userBan(int uid, UserBanRequest userBanRequest)
     {
         User user = userRepository.findById(uid).orElseThrow(UserNotFoundException::new);
         User target = userRepository.findById(userBanRequest.getTargetId()).orElseThrow(UserNotFoundException::new);
         user.addBan(target);
-        userRepository.save(user);
         return new UserBanResponse(user.getBanList());
     }
 

@@ -96,4 +96,14 @@ public class User {
         }
         this.manner = sum/size;
     }
+
+    public void updateNickname(String nickname)
+    {
+        this.nickname = nickname;
+    }
+
+    public void updateHash(String hash)
+    {
+        this.hash = hash;
+    }
 }
