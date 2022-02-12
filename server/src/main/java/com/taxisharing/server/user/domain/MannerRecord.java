@@ -1,6 +1,7 @@
 package com.taxisharing.server.user.domain;
 
 
+import com.taxisharing.server.common.domain.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "manner_record")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MannerRecord {
+public class MannerRecord extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
