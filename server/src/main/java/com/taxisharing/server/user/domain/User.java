@@ -1,5 +1,6 @@
 package com.taxisharing.server.user.domain;
 
+import com.taxisharing.server.common.domain.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class User extends BaseTimeEntity {
 
     private static final String DEFAULT_PROFILE = "/default-profile";
 
