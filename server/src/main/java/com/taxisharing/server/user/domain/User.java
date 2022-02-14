@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends BaseTimeEntity {
 
-    private static final String DEFAULT_PROFILE = "/default-profile";
+    private static final String DEFAULT_PROFILE = "users/profiles/default";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -106,5 +106,13 @@ public class User extends BaseTimeEntity {
     public void updateHash(String hash)
     {
         this.hash = hash;
+    }
+
+    public void deleteProfile() {
+        this.profileImage = DEFAULT_PROFILE;
+    }
+
+    public void updateProfileImage(String uploadedFile) {
+        this.profileImage = uploadedFile;
     }
 }

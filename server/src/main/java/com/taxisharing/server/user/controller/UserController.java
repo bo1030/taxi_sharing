@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -60,6 +61,12 @@ public class UserController {
         }
         userService.updatePassword(userInfo.getId(), passwordRequest.toHash());
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/profile")
+    ResponseEntity<ProfileResponse> updateProfile(BasicUserInfo userInfo, @RequestParam MultipartFile file)
+    {
+        return ResponseEntity.ok(userService.updateProfile(userInfo.getId(), file));
     }
 
     @PostMapping("/{UID}")
