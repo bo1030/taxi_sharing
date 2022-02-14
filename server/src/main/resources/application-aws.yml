@@ -1,0 +1,10 @@
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+cloudfront:
+  url: https://dxsyjonvlbsj4.cloudfront.net/
+s3:
+  bucket: taxiproject-s3
