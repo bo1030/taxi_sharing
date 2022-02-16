@@ -14,7 +14,7 @@ public class S3Config {
     private String region;
 
     @Bean
-    public AmazonS3 AmazonS3Client()
+    public AmazonS3 amazonS3()
     {
         return AmazonS3ClientBuilder
                 .standard()
