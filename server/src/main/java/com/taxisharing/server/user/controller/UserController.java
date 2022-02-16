@@ -69,6 +69,12 @@ public class UserController {
         return ResponseEntity.ok(userService.updateProfile(userInfo.getId(), file));
     }
 
+    @DeleteMapping("/profile")
+    ResponseEntity<Void> deleteProfile(BasicUserInfo userInfo) {
+        userService.deleteProfile(userInfo.getId());
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping("/{UID}")
     ResponseEntity<EvaluateMannerResponse> evaluateManner(@PathVariable("UID") int targetId, @RequestBody EvaluateMannerRequest evaluateMannerRequest)
     {
