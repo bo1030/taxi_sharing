@@ -5,6 +5,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://13.209.32.171:3306/taxi_db
 
+  profiles:
+    include: aws
+
 jwt:
   secreteKey: ABCDEFG
   expire-length: 600000
+
+test: 아왜안돼

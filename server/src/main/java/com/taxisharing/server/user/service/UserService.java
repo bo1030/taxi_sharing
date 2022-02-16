@@ -1,6 +1,7 @@
 package com.taxisharing.server.user.service;
 
 import com.taxisharing.server.auth.service.AuthenticationService;
+import com.taxisharing.server.common.util.S3Connector;
 import com.taxisharing.server.user.domain.MannerRecord;
 import com.taxisharing.server.user.domain.User;
 import com.taxisharing.server.user.dto.*;
@@ -11,6 +12,7 @@ import com.taxisharing.server.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Transactional
@@ -19,6 +21,7 @@ public class UserService {
     public final UserRepository userRepository;
     public final MannerRepository mannerRepository;
     public final AuthenticationService authenticationService;
+    public final S3Connector s3Connector;
 
     public SignUpResponse signUp(SignUpRequest signUpRequest)
     {
@@ -61,6 +64,32 @@ public class UserService {
     {
         User user = this.findUser(uid);
         user.updateHash(newHash);
+    }
+
+    public ProfileResponse updateProfile(int uid, MultipartFile file)
+    {
+        User user = findUser(uid);
+        deleteProfile(user);
+        String uploadedFile  = s3Connector.uploadProfile(file,uid);
+        user.updateProfileImage(uploadedFile);
+
+        return new ProfileResponse(uploadedFile);
+    }
+
+    private void deleteProfile(User user)
+    {
+        if(user.getProfileImage().equals("users/profiles/default"))
+        {
+            return;
+        }
+        s3Connector.delete(user.getProfileImage());
+        user.deleteProfile();
+    }
+
+    public void deleteProfile(int uid)
+    {
+        User user = findUser(uid);
+        deleteProfile(user);
     }
 
     @Transactional(readOnly = true)
