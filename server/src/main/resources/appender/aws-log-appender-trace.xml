@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<included>
+    <springProperty name="LOG_GROUP" source="cloudwatch.log-group"/>
+
+    <appender name ="AWS" class="ca.pjer.logback.AwsLogsAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+
+        <layout>
+            <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss.SSS} %t ${PID:-}){faint} %clr([%-5p]) %clr([%-40.40logger{35}]){cyan} %clr(:){faint} %m%n</pattern>
+        </layout>
+
+        <logGroupName>${LOG_GROUP}</logGroupName>
+        <logRegion>ap-northeast-2</logRegion>
+    </appender>
+
+    <appender name="AWS-T" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="AWS"/>
+    </appender>
+</included>
