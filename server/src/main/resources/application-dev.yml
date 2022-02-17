@@ -1,0 +1,3 @@
+cloudwatch:
+  log_group:
+    /taxi/logs/app/dev

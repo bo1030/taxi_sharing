@@ -12,4 +12,5 @@ jwt:
   secreteKey: ABCDEFG
   expire-length: 600000
 
-test: 아왜안돼
+logging:
+  config: classpath:logback-spring.xml
