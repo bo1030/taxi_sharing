@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<included>
+    <appender name="DISCORD" class="com.github.napstr.logback.DiscordAppender">
+        <!-- do not set your webhook here if you want to commit this file to your VCS, instead look below for an example on how to set it at runtime -->
+        <webhookUri>https://discord.com/api/webhooks/943847402203398204/IZ25i_TSF1zxSfyl43Kbi3HJ2_urCdlXZLWzWyM1m_0egWLtb2oPZS40hJt6FMaSQ0k9</webhookUri>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss} [%thread] [%-5level] %logger{36} - %msg%n```%ex{full}```</pattern>
+        </layout>
+        <!-- Fill in username and avatarUrl with your desired values -->
+        <username>SpringServer</username>
+        <avatarUrl>https://media.vlpt.us/images/galaxy/post/b501f325-1810-4e26-962e-e66ca0b94ca9/image.png</avatarUrl>
+        <tts>false</tts>
+    </appender>
+
+    <appender name="ASYNC_DISCORD_ERROR" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="DISCORD" />
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+</included>

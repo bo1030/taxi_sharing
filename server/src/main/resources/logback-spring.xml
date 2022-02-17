@@ -20,24 +20,24 @@
         <include resource="appender/aws-log-appender-debug.xml"/>
         <include resource="appender/aws-log-appender-info.xml"/>
         <include resource="appender/aws-log-appender-trace.xml"/>
-        <include resource="appender/file-appender.xml"/>
+        <include resource="appender/discord-appender-error.xml"/>
 
         <logger name="org.hibernate.SQL" level="INFO">
-            <appender-ref ref="AWS-D"/>
+            <appender-ref ref="ASYNC_AWS-D"/>
         </logger>
         <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="INFO">
-            <appender-ref ref="AWS-T"/>
+            <appender-ref ref="ASYNC_AWS-T"/>
         </logger>
         <logger name="org.springframework.web.servlet.DispatcherServlet" level="INFO">
-            <appender-ref ref="AWS-D"/>
+            <appender-ref ref="ASYNC_AWS-D"/>
         </logger>
         <logger name="org.springframework.orm.jpa.JpaTransactionManager" level="INFO">
-            <appender-ref ref="AWS-D"/>
+            <appender-ref ref="ASYNC_AWS-D"/>
         </logger>
 
         <root level="INFO">
-            <appender-ref ref="AWS-I"/>
-            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="ASYNC_DISCORD_ERROR"/>
+            <appender-ref ref="ASYNC_AWS-I"/>
         </root>
     </springProfile>
 
@@ -45,23 +45,24 @@
         <include resource="appender/aws-log-appender-debug.xml"/>
         <include resource="appender/aws-log-appender-info.xml"/>
         <include resource="appender/aws-log-appender-trace.xml"/>
-        <include resource="appender/file-appender.xml"/>
+        <include resource="appender/discord-appender-error.xml"/>
 
         <logger name="org.hibernate.SQL" level="INFO">
-            <appender-ref ref="AWS-D"/>
+            <appender-ref ref="ASYNC_AWS-D"/>
         </logger>
         <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="INFO">
-            <appender-ref ref="AWS-T"/>
+            <appender-ref ref="ASYNC_AWS-T"/>
         </logger>
         <logger name="org.springframework.web.servlet.DispatcherServlet" level="INFO">
-            <appender-ref ref="AWS-D"/>
+            <appender-ref ref="ASYNC_AWS-D"/>
         </logger>
         <logger name="org.springframework.orm.jpa.JpaTransactionManager" level="INFO">
-            <appender-ref ref="AWS-D"/>
+            <appender-ref ref="ASYNC_AWS-D"/>
         </logger>
 
         <root level="INFO">
-            <appender-ref ref="AWS-I"/>
+            <appender-ref ref="ASYNC_DISCORD_ERROR"/>
+            <appender-ref ref="ASYNC_AWS-I"/>
         </root>
     </springProfile>
 </configuration>
