@@ -92,6 +92,13 @@ public class UserService {
         deleteProfile(user);
     }
 
+    public void deleteUser(int uid)
+    {
+        User user = findUser(uid);
+        deleteProfile(user);
+        userRepository.delete(user);
+    }
+
     @Transactional(readOnly = true)
     public User findUser(int id)
     {

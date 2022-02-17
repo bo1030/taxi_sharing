@@ -41,6 +41,13 @@ public class UserController {
         return ResponseEntity.ok(userService.signUp(signUpRequest));
     }
 
+    @DeleteMapping()
+    ResponseEntity<Void> deleteUser(BasicUserInfo userInfo)
+    {
+        userService.deleteUser(userInfo.getId());
+        return ResponseEntity.ok().build();
+    }
+
     @PutMapping("/nickname")
     ResponseEntity<Void> upddateNickname(BasicUserInfo userInfo, @Valid @RequestBody NicknameRequest nicknameRequest, BindingResult result)
     {
