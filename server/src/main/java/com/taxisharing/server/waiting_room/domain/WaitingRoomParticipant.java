@@ -31,14 +31,9 @@ public class WaitingRoomParticipant extends BaseTimeEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "read_time", nullable = false)
-    private LocalDateTime readTime;
-
-
 
     public WaitingRoomParticipant(Integer status, String name, LocalDateTime readTime) {
         this.status = status;
         this.name = name;
-        this.readTime = readTime;
     }
 }
