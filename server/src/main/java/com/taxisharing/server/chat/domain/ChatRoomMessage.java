@@ -1,5 +1,6 @@
 package com.taxisharing.server.chat.domain;
 
+import com.taxisharing.server.common.domain.BaseTimeEntity;
 import com.taxisharing.server.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.util.Date;
 @Table(name = "chat_room_message")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ChatRoomMessage {
+public class ChatRoomMessage extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
