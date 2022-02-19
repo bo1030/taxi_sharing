@@ -1,5 +1,6 @@
 package com.taxisharing.server.waiting_room.domain;
 
+import com.taxisharing.server.common.domain.BaseTimeEntity;
 import com.taxisharing.server.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "waiting_room_message")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class WaitingRoomMessage {
+public class WaitingRoomMessage extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

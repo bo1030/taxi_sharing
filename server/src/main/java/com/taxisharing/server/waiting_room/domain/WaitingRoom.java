@@ -1,5 +1,6 @@
 package com.taxisharing.server.waiting_room.domain;
 
+import com.taxisharing.server.common.domain.BaseTimeEntity;
 import com.taxisharing.server.user.domain.User;
 import com.taxisharing.server.waiting_room.dto.WaitingRoomCreateRequest;
 import lombok.AccessLevel;
@@ -15,7 +16,7 @@ import java.util.List;
 @Getter
 @Table(name = "waiting_room")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class WaitingRoom {
+public class WaitingRoom extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

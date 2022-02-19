@@ -29,7 +29,7 @@ public class WaitingRoomController {
         return ResponseEntity.ok(waitingRoomService.getWaitingRoomList(waitingRoomListRequest));
     }
     
-    @PostMapping
+    @PostMapping()
     ResponseEntity<WaitingRoomCreateResponse> createWaitingRoom(@RequestAttribute int uid, @Valid @RequestBody WaitingRoomCreateRequest createWaitingRoomRequest, BindingResult result)
     {
         if (result.hasErrors())
@@ -38,4 +38,6 @@ public class WaitingRoomController {
         }
         return ResponseEntity.ok(waitingRoomService.createWaitingRoom(uid, createWaitingRoomRequest));
     }
+
+
 }

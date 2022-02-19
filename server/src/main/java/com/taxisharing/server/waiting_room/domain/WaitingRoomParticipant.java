@@ -1,5 +1,6 @@
 package com.taxisharing.server.waiting_room.domain;
 
+import com.taxisharing.server.common.domain.BaseTimeEntity;
 import com.taxisharing.server.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @IdClass(WaitingRoomParticipantId.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class WaitingRoomParticipant{
+public class WaitingRoomParticipant extends BaseTimeEntity {
 
     @Id
     @ManyToOne(fetch = FetchType.EAGER)
