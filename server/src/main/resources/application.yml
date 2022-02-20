@@ -14,3 +14,7 @@ jwt:
 
 logging:
   config: classpath:logback-spring.xml
+
+iamport:
+  key: 6728211803389795
+  secret: 1fa326bb49b98823c8847237f50da27877ac316609b910d9193fcfa5fd6700c7c06060dfb528b285
