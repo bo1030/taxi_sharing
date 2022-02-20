@@ -4,20 +4,19 @@ import com.taxisharing.server.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.web.embedded.undertow.UndertowServletWebServer;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="personal_payment")
-@IdClass(PersonalPaymentId.class)
+@Table(name="point_payment")
+@IdClass(PointPaymentId.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PersonalPayment {
+public class PointPayment {
     @Id
     @ManyToOne(fetch= FetchType.LAZY) //필요할 때만
-    @JoinColumn(name = "payment_id")
-    private Payment payment;
+    @JoinColumn(name = "taxi_payment_id")
+    private TaxiPayment payment;
 
 
     @Id
@@ -27,7 +26,7 @@ public class PersonalPayment {
 
     private Integer personalAmount;
 
-    public PersonalPayment(Integer personalAmount){
+    public PointPayment(Integer personalAmount){
         this.personalAmount=personalAmount;
     }
 }
