@@ -1,6 +1,7 @@
 package com.taxisharing.server.user.domain;
 
 import com.taxisharing.server.common.domain.BaseTimeEntity;
+import com.taxisharing.server.payment.domain.Payment;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,7 @@ public class User extends BaseTimeEntity {
     @Column(length = 64, nullable = false)
     private String hash;
 
+    private int point;
 
     @Column(length = 32, nullable = false)
     private String email;
@@ -46,7 +48,10 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "user")
     private final List<Ban> banList = new ArrayList<>();
 
-    public User(String nickname, String username, String hash, String email, String profileImage, int manner)
+    @OneToMany(mappedBy = "user")
+    private final List<Payment> paymentList = new ArrayList<>();
+
+    public User(String nickname, String username, String hash, String email, String profileImage, int manner, int point)
     {
         this.email = email;
         this.hash = hash;
@@ -54,11 +59,12 @@ public class User extends BaseTimeEntity {
         this.username = username;
         this.profileImage = profileImage;
         this.manner = manner;
+        this.point = point;
     }
 
     public User(String nickname, String username, String hash, String email, String profileImage)
     {
-        this(nickname, username, hash, email, profileImage, 0);
+        this(nickname, username, hash, email, profileImage, 0, 0);
     }
 
     public User(String nickname, String username, String hash, String email)
@@ -114,5 +120,15 @@ public class User extends BaseTimeEntity {
 
     public void updateProfileImage(String uploadedFile) {
         this.profileImage = uploadedFile;
+    }
+
+    public void addPayment(Payment payment)
+    {
+        this.paymentList.add(payment);
+        payment.to(this);
+    }
+
+    public void increasePoint(int amount) {
+        this.point += amount;
     }
 }
